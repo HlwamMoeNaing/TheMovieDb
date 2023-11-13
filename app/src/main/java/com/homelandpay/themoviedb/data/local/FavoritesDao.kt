@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface FavoritesDao {
@@ -14,6 +15,7 @@ interface FavoritesDao {
 
     @Query("SELECT * FROM favorites_table ORDER BY mediaId DESC")
     fun getAllFavorites(): LiveData<List<Favorite>>
+
 
     @Query("SELECT * FROM favorites_table WHERE mediaId  == :mediaId")
     fun getAFavorites(mediaId: Int): LiveData<Favorite?>

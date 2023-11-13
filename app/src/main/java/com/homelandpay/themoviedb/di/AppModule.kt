@@ -51,7 +51,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMoviesRepository(api: TMDBApi) = MoviesRepository(api)
+    fun provideMoviesRepository(api: TMDBApi,favoritesDatabase: FavoritesDatabase) = MoviesRepository(api,favoritesDatabase)
 
     @Provides
     @Singleton

@@ -104,6 +104,63 @@ fun MovieItem(modifier: Modifier, imageUrl: String) {
     }
 }
 
+
+
+@Composable
+fun MovieItemNew(modifier: Modifier, imageUrl: String,
+                 isLiked: Boolean,
+                 onClick: () -> Unit
+) {
+    //onClick: (isFav: Boolean) -> Unit,
+    Card(modifier = modifier.padding(4.dp)) {
+        Box (modifier = Modifier.fillMaxWidth()){
+            Image(
+                painter = rememberImagePainter(
+                    data = imageUrl,
+                    builder = {
+                        placeholder(R.drawable.placeholder_image)
+                        crossfade(true)
+                    }
+                ),
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop,
+                contentDescription = "Movie Banner"
+            )
+
+            IconButton(
+
+                onClick = {
+                    onClick()
+                },
+                modifier = Modifier.align(Alignment.TopEnd)
+
+            ) {
+
+                Icon(
+                    modifier = Modifier
+                        .width(30.dp)
+                        .height(30.dp),
+                    imageVector = Icons.Filled.Favorite,
+                    tint = if (isLiked) {
+                        Color.Cyan
+                    } else {
+                        Color.LightGray
+                    },
+                    contentDescription = if (isLiked) {
+                        ""
+                    } else {
+                        ""
+                    }
+                )
+            }
+        }
+
+    }
+}
+
+
+
+
 @Composable
 fun FilmInfo(
     scrollState: LazyListState,

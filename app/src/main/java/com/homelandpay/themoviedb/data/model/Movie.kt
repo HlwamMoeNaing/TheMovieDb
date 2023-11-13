@@ -1,8 +1,18 @@
 package com.homelandpay.themoviedb.data.model
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.homelandpay.themoviedb.data.local.typeConverter.GenreIdTypeConverter
+import com.homelandpay.themoviedb.data.local.typeConverter.GenreListTypeConverter
 
+@Entity(tableName = "movies")
+@TypeConverters(
+    GenreIdTypeConverter::class,
+    )
 data class Movie(
     @SerializedName("adult")
     val adult: Boolean,
@@ -11,6 +21,7 @@ data class Movie(
     @SerializedName("genre_ids")
     val genreIds: List<Int>,
     @SerializedName("id")
+    @PrimaryKey
     val id: Int,
     @SerializedName("original_language")
     val originalLanguage: String,
@@ -31,5 +42,7 @@ data class Movie(
     @SerializedName("vote_average")
     val voteAverage: Double,
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
+    var isFavourite:Boolean = false,
+    var category:String = ""
 )
